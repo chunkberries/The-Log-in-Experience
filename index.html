@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>The Log-in Experience?</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #ffe4e1;
+    text-align: center;
+    padding-top: 50px;
+  }
+  #question {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+  }
+  #birthday {
+    font-weight: bold;
+    margin: 20px 0;
+  }
+  button {
+    font-size: 1em;
+    padding: 10px 20px;
+    margin: 10px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<div id="birthday"></div>
+<button id="noBtn">No</button>
+<button id="yesBtn">Yes</button>
+
+<script>
+  const birthdayDiv = document.getElementById('birthday');
+  const questionDiv = document.getElementById('question');
+  const ageInput = document.getElementById('ageInput');
+  const noBtn = document.getElementById('noBtn');
+  const yesBtn = document.getElementById('yesBtn');
+
+  let currentBirthday = '';
+
+  function generateRandomBirthday() {
+    const year = Math.floor(Math.random() * (2023 - 1950 + 1)) + 1950; // Year between 1950 and 2023
+    const month = Math.floor(Math.random() * 12) + 1; // Month 1-12
+    const day = Math.floor(Math.random() * 28) + 1; // Day 1-28 to avoid invalid dates
+    const dateString = `${month}/${day}/${year}`;
+    return dateString;
+  }
+
+  function updateBirthday() {
+    currentBirthday = generateRandomBirthday();
+    birthdayDiv.textContent = `Is this your birthday: ${currentBirthday}`;
+  }
+
+  noBtn.addEventListener('click', () => {
+    updateBirthday();
+  });
+
+  yesBtn.addEventListener('click', () => {
+    alert('Ok, now choose a password.');
+    // Redirect to the password game
+    window.location.href = 'https://neal.fun/password-game/';
+  });
+
+  // Initialize with a random birthday
+  updateBirthday();
+</script>
+
+</body>
+</html>
